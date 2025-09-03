@@ -10,6 +10,29 @@ class YANSNumber:
             YANSNumber._primes.append(sympy.nextprime(YANSNumber._primes[-1]))
         return YANSNumber._primes[:n]
 
+    @classmethod
+    def imaginary(cls):
+        """Returns a YANSNumber representing the imaginary unit i."""
+        return cls(1j, [0])
+
+    @classmethod
+    def quaternion_j(cls):
+        """Returns a YANSNumber representing the quaternion unit j."""
+        return cls('j', [0])
+
+    @classmethod
+    def quaternion_k(cls):
+        """Returns a YANSNumber representing the quaternion unit k."""
+        return cls('k', [0])
+
+    @classmethod
+    def clifford_blade(cls, blade):
+        """
+        Returns a YANSNumber representing a Clifford algebra blade unit.
+        blade: string, e.g. 'e1', 'e2', 'e12', etc.
+        """
+        return cls(blade, [0])
+
     def __init__(self, sign, exponents):
         self.sign = sign  # 1, -1, or 0 (for zero)
         self.exponents = tuple(exponents)  # Use a tuple for immutability
@@ -17,7 +40,16 @@ class YANSNumber:
     def __str__(self):
         if self.sign == 0:
             return "0"
-        sign_str = '+' if self.sign == 1 else '-'
+        if self.sign == 1:
+            sign_str = '+'
+        elif self.sign == -1:
+            sign_str = '-'
+        elif self.sign == 1j:
+            sign_str = 'i'
+        elif self.sign == -1j:
+            sign_str = '-i'
+        else:
+            sign_str = str(self.sign)
         exp_str = "|".join(str(int(e)) for e in self.exponents)
         return f"{sign_str}[{exp_str}]"
 
@@ -42,19 +74,31 @@ class YANSNumber:
 
         if exp_val.is_integer():
             exp = int(exp_val)
-            new_sign = self.sign if exp % 2 == 1 else 1
+            # Handle complex sign bit
+            if self.sign in (1, -1):
+                new_sign = self.sign if exp % 2 == 1 else 1
+            elif self.sign in (1j, -1j):
+                # (i)^n cycles: i, -1, -i, 1
+                cycle = [1j, -1, -1j, 1]
+                idx = cycle.index(self.sign)
+                new_sign = cycle[(idx + exp) % 4]
+            else:
+                new_sign = self.sign ** exp
             new_exponents = [e * exp for e in self.exponents]
             return YANSNumber(new_sign, new_exponents)
 
         # Rational or real exponent
         new_exponents = [e * exp_val for e in self.exponents]
-
-        # If base is negative and exponent is not integer, result is complex
+        # If sign is -1 and exponent is not integer, result is complex
         if self.sign == -1:
             phase = math.pi * exp_val
             return (YANSNumber(1, new_exponents), phase)
+        elif self.sign == 1j or self.sign == -1j:
+            # (i)^r = exp(i*pi/2*r)
+            phase = (math.pi / 2) * exp_val if self.sign == 1j else (3 * math.pi / 2) * exp_val
+            return (YANSNumber(1, new_exponents), phase)
         else:
-            return YANSNumber(1, new_exponents)
+            return YANSNumber(self.sign, new_exponents)
 
     def to_int(self):
         """
@@ -120,9 +164,21 @@ class YANSNumber:
     def __abs__(self):
         return YANSNumber(abs(self.sign), self.exponents)
 
+def yans_imaginary():
+    """
+    Returns a YANSNumber representing the imaginary unit i = (-1)^(1/2).
+    """
+    return YANSNumber((-1) ** 0.5, [0])
+
 class YANSComplex:
     """
-    Represents a complex number using two YANSNumber objects: real and imaginary parts.
+    Represents a complex number as an ordered pair of YANSNumbers:
+    (real, imag), where imag can be constructed as YANSNumber((-1)**0.5, [0]).
+    Example:
+        real = yans_representation(2)
+        imag = yans_imaginary()
+        z = YANSComplex(real, imag)
+        # z represents 2 + i
     """
     def __init__(self, real, imag):
         if not isinstance(real, YANSNumber) or not isinstance(imag, YANSNumber):
@@ -148,6 +204,7 @@ class YANSComplex:
 class YANSQuaternion:
     """
     Represents a quaternion using four YANSNumber objects: w + xi + yj + zk.
+    Units x, y, z can use YANSNumber.imaginary(), YANSNumber.quaternion_j(), YANSNumber.quaternion_k().
     """
     def __init__(self, w, x, y, z):
         if not all(isinstance(a, YANSNumber) for a in (w, x, y, z)):
@@ -172,8 +229,7 @@ class YANSQuaternion:
 class YANSClifford:
     """
     Represents a Clifford algebra element as a list of YANSNumber coefficients for basis blades.
-    blades: list of strings representing basis (e.g. ['1', 'e1', 'e2', 'e12'])
-    coeffs: list of YANSNumber objects, same length as blades
+    Each blade can be constructed using YANSNumber.clifford_blade('e1'), etc.
     """
     def __init__(self, blades, coeffs):
         if len(blades) != len(coeffs):

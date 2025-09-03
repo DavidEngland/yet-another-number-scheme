@@ -2,27 +2,30 @@ import sympy
 import math
 
 class YANSNumber:
+    """
+    Pure integer YANS representation.
+    The first exponent is for -1, followed by exponents for 2, 3, 5, ...
+    """
     def __init__(self, exponents):
-        # exponents[0] is for -1, exponents[1:] for primes 2, 3, 5, ...
         self.exponents = exponents  # list of ints
 
     def __str__(self):
         exp_str = "|".join(str(e) for e in self.exponents)
         return f"[{exp_str}]"
 
+    def __eq__(self, other):
+        return isinstance(other, YANSNumber) and self.exponents == other.exponents
+
+    def __hash__(self):
+        return hash(tuple(self.exponents))
+
     def __pow__(self, exponent):
-        """
-        Raises the YANSNumber to a given exponent.
-        Multiplies all exponents by the exponent.
-        Returns [0] for any nonzero base to the power 0.
-        """
         if exponent == 0:
             return YANSNumber([0])
         new_exponents = [e * exponent for e in self.exponents]
         return YANSNumber(new_exponents)
 
     def __mul__(self, other):
-        # Pad exponents to same length
         max_len = max(len(self.exponents), len(other.exponents))
         a = self.exponents + [0] * (max_len - len(self.exponents))
         b = other.exponents + [0] * (max_len - len(other.exponents))
@@ -37,12 +40,8 @@ class YANSNumber:
         return YANSNumber(new_exponents)
 
     def to_int(self):
-        """
-        Converts the YANSNumber back to its integer value.
-        """
         if self.exponents == [0]:
             return 1
-        # -1 is treated as the first "prime"
         primes = [-1] + list(sympy.primerange(2, 2 + len(self.exponents) - 1))
         value = 1
         for p, e in zip(primes, self.exponents):
@@ -99,3 +98,61 @@ def yans_representation(n):
     while exponents and exponents[-1] == 0:
         exponents.pop()
     return YANSNumber([sign_exp] + exponents)
+
+class YANSComplex:
+    """
+    Complex numbers as pairs of YANSNumber objects (real, imag).
+    """
+    def __init__(self, real, imag):
+        if not isinstance(real, YANSNumber) or not isinstance(imag, YANSNumber):
+            raise TypeError("real and imag must be YANSNumber instances")
+        self.real = real
+        self.imag = imag
+
+    def __str__(self):
+        real_str = str(self.real)
+        imag_str = str(self.imag)
+        return f"{real_str} + {imag_str}i"
+
+    def to_complex(self):
+        return complex(self.real.to_int(), self.imag.to_int())
+
+class YANSQuaternion:
+    """
+    Quaternions as four YANSNumber objects (w, x, y, z).
+    """
+    def __init__(self, w, x, y, z):
+        if not all(isinstance(a, YANSNumber) for a in (w, x, y, z)):
+            raise TypeError("All components must be YANSNumber instances")
+        self.w = w
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def __str__(self):
+        return f"{self.w} + {self.x}i + {self.y}j + {self.z}k"
+
+    def to_tuple(self):
+        return (self.w.to_int(), self.x.to_int(), self.y.to_int(), self.z.to_int())
+
+class YANSClifford:
+    """
+    Clifford algebra elements as a list of YANSNumber coefficients for basis blades.
+    """
+    def __init__(self, blades, coeffs):
+        if len(blades) != len(coeffs):
+            raise ValueError("blades and coeffs must have same length")
+        if not all(isinstance(c, YANSNumber) for c in coeffs):
+            raise TypeError("All coefficients must be YANSNumber instances")
+        self.blades = blades
+        self.coeffs = coeffs
+
+    def __str__(self):
+        terms = []
+        for blade, coeff in zip(self.blades, self.coeffs):
+            if coeff.to_int() != 0:
+                terms.append(f"{str(coeff)}{blade if blade != '1' else ''}")
+        return " + ".join(terms) if terms else "0"
+
+    def to_dict(self):
+        return {blade: coeff.to_int() for blade, coeff in zip(self.blades, self.coeffs)}
