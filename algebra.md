@@ -190,3 +190,37 @@ result_yans = yans_representation(round(e_neg_pi_half))  # Approximate integer
 ```
 
 This demonstrates how YANS can be extended to handle complex exponentiation and other transcendental operations, either numerically or symbolically.
+
+## Gelfond-Schneider Theorem and Transcendental Numbers
+
+YANS can also represent certain algebraic numbers (like √2) and can be extended to handle transcendental numbers through the Gelfond-Schneider Theorem, which states:
+
+> If α and β are algebraic numbers with α ≠ 0, α ≠ 1, and β is irrational, then α^β is transcendental.
+
+This theorem allows us to identify when expressions like a^b yield transcendental numbers. Some examples:
+
+- 2^√2 is transcendental (base is rational, exponent is irrational)
+- (√2)^(√2) is transcendental (base is irrational, exponent is irrational)
+- π^e is undetermined by this theorem (both are transcendental)
+
+The `gelfond_schneider.py` module extends YANS with:
+
+1. Representations of algebraic numbers via their minimal polynomials
+2. Detection of transcendental powers using the theorem
+3. Symbolic computation with transcendental results
+
+```python
+from gelfond_schneider import AlgebraicNumber, compute_power
+
+# Create algebraic numbers
+sqrt2 = AlgebraicNumber.sqrt(2)
+two = AlgebraicNumber.from_rational(yans_representation(2))
+
+# Check if result is transcendental
+result = compute_power(two, sqrt2)  # "Transcendental by Gelfond-Schneider: AlgNum([0|1])^AlgNum(poly=[-2, 0, 1], root=0)"
+
+# Compute a power that's algebraic
+result = compute_power(sqrt2, two)  # AlgNum([0|1]) (which is 2)
+```
+
+This extension allows YANS to handle a broader class of numbers and determine when operations yield transcendental results.
