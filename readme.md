@@ -1,65 +1,106 @@
 # Yet Another Number Scheme (YANS)
 
-This repository provides a Python implementation of the YANS (Yet Another Number Scheme) representation for integers.
+A Python implementation of YANS (Yet Another Number Scheme), an efficient representation of numbers based on prime factorization.
 
 ## What is YANS?
 
-YANS represents an integer as an ordered, bracketed, and delimited list of exponents in its prime factorization.  
-For example, the number 12 (which is 2^2 * 3^1) is represented as `[2|1]`.
+YANS represents integers as an ordered list of exponents for their prime factorization. The first exponent represents the power of -1 (for sign), followed by exponents for primes 2, 3, 5, 7, etc.
 
-## Usage
+For example:
+- 12 = 2² × 3¹ is represented as `[0|2|1]` (the 0 means "positive")
+- -12 = -1¹ × 2² × 3¹ is represented as `[1|2|1]` (the 1 means "negative")
 
-```python
-from yans import yans_representation
+## Key Features
 
-print(yans_representation(12))  # Output: [2|1]
-print(yans_representation(1))   # Output: [0]
-print(yans_representation(30))  # Output: [1|1|1]
-```
+- **Efficient Operations**: Multiplication, division, and powers become simple vector operations
+- **Zero Handling**: Special representation for zero
+- **Type Hints**: Clean, typed implementations for maintainability
+- **Advanced Math**: Extended to complex numbers, quaternions, and Clifford algebra
 
-## Function Documentation
+## Usage Examples
 
-### `yans_representation(n: int) -> str`
-
-Returns the YANS representation of a positive integer `n` as a string.  
-The format is `[e1|e2|...|ek]`, where each `ei` is the exponent of the i-th prime in the factorization of `n`.
-
-- For `n = 1`, returns `[0]`.
-- For composite numbers, uses primes up to `sqrt(n)` and includes any remaining prime factor > `sqrt(n)`.
-
-## Example Table: YANS and Base 36 Representations
-
-| Integer | YANS Representation | Base 36 |
-|---------|---------------------|---------|
-| 50      | +[1|2]              | 1e      |
-| 51      | +[0|1|1|1]          | 1f      |
-| 52      | +[2|0|1]            | 1g      |
-| 53      | +[0|0|0|0|1]        | 1h      |
-| 54      | +[1|3]              | 1i      |
-| 55      | +[0|1|0|1]          | 1j      |
-| 56      | +[3|1]              | 1k      |
-| 57      | +[0|0|1|1]          | 1l      |
-| 58      | +[1|0|0|1]          | 1m      |
-| 59      | +[0|0|0|0|0|1]      | 1n      |
-| 60      | +[2|1|1]            | 1o      |
-| ...     | ...                 | ...     |
-| 198     | +[1|1|1|2]          | 5o      |
-| 199     | +[0|0|0|0|0|0|1]    | 5p      |
-| 200     | +[3|0|0|1]          | 5q      |
-
-*Table truncated for brevity. See script below to generate full table.*
-
-### How to generate this table
+### Basic Integer Representation
 
 ```python
-from yans2 import yans_representation
+from yans3 import yans_representation
 
-print("| Integer | YANS Representation | Base 36 |")
-print("|---------|---------------------|---------|")
-for i in range(50, 201):
-    yans = yans_representation(i)
-    print(f"| {i} | {str(yans)} | {yans.to_base(36)} |")
+# Basic representation
+print(yans_representation(12))      # [0|2|1]
+print(yans_representation(-12))     # [1|2|1]
+print(yans_representation(0))       # [0]
+
+# Convert back to integer
+yans_num = yans_representation(42)
+print(yans_num.to_int())            # 42
+
+# Show factorization
+print(yans_num.to_factor_string())  # 2^1 * 3^1 * 7^1
 ```
+
+### Operations
+
+```python
+a = yans_representation(6)    # [0|1|1]
+b = yans_representation(10)   # [0|1|0|1]
+
+# Multiplication: 6 × 10 = 60
+c = a * b                     # [0|2|1|1]
+print(c.to_int())             # 60
+
+# Division: 60 ÷ 6 = 10
+d = c / a                     # [0|1|0|1]
+print(d.to_int())             # 10
+
+# Powers: 6² = 36
+e = a ** 2                    # [0|2|2]
+print(e.to_int())             # 36
+```
+
+### Complex Numbers and Beyond
+
+```python
+from yans3 import YANSComplex, yans_representation
+
+# Complex number: 3 + 4i
+real = yans_representation(3)
+imag = yans_representation(4)
+z = YANSComplex(real, imag)
+
+# Operations
+z_squared = z * z             # -7 + 24i
+```
+
+### Blade-Based Clifford Algebra (Geometric Algebra)
+
+```python
+from bladed_yans import Multivector, yans
+
+# Create vectors
+e1 = Multivector.basis_vector(1)
+e2 = Multivector.basis_vector(2)
+
+# Geometric product
+bivector = e1 * e2            # e12 (represents an oriented plane)
+
+# Rotation using rotors
+angle = math.pi/4
+rotor = Multivector.exp(bivector * yans_representation(angle))
+```
+
+## Versions
+
+- **yans.py**: Original implementation
+- **yans2.py**: Extended to complex numbers and quaternions
+- **yans3.py**: Improved implementation with better type handling and zero support
+- **bladed_yans.py**: Implementation using geometric algebra concepts (blades)
+
+## Documentation
+
+See additional files for detailed documentation:
+- [YANS Description](yans.md): Detailed explanation of the YANS representation
+- [Algebra](algebra.md): Mathematical properties of YANS numbers
+- [Blades](blades.md): Explanation of geometric algebra blades and their implementation
+- [Applications](applications.md): Potential applications of YANS
 
 ## License
 

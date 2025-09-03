@@ -232,3 +232,19 @@ def __sub__(self, other: 'YANSNumber') -> 'YANSNumber':
 
 YANSNumber.__add__ = __add__
 YANSNumber.__sub__ = __sub__
+
+def complex_pow(base: YANSComplex, exponent: YANSComplex) -> Tuple[float, float]:
+    """
+    Computes complex exponentiation z^w where z and w are complex numbers.
+    Returns a tuple (real, imag) representing the result.
+    
+    Example: i^i = e^(-π/2) ≈ 0.2079
+    """
+    # Convert to Python complex
+    z = base.to_complex()
+    w = exponent.to_complex()
+    
+    # Calculate z^w using the formula:
+    # z^w = e^(w * ln(z))
+    result = cmath.exp(w * cmath.log(z))
+    return (result.real, result.imag)
