@@ -10,6 +10,64 @@ For example:
 - 12 = 2² × 3¹ is represented as `[0|2|1]` (the 0 means "positive")
 - -12 = -1¹ × 2² × 3¹ is represented as `[1|2|1]` (the 1 means "negative")
 
+## Installation
+
+### Requirements
+
+YANS requires Python 3.7+ and the following dependencies:
+- mpmath - For high-precision mathematics
+- sympy - For symbolic mathematics and prime numbers
+- numpy - For numerical computations and linear algebra
+- tqdm - For progress bars (optional but recommended)
+
+### Installation Steps
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/yet-another-number-scheme.git
+   cd yet-another-number-scheme
+   ```
+
+2. **Install dependencies**:
+   
+   Using the requirements file:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+   Or install packages individually:
+   ```bash
+   pip install mpmath sympy numpy tqdm
+   ```
+
+## Running the Scripts
+
+### Basic YANS Operations
+
+To experiment with the core YANS representation:
+
+```bash
+python yans3.py
+```
+
+### Explore BBP Formulas for Mathematical Constants
+
+To search for Bailey-Borwein-Plouffe type formulas for constants:
+
+```bash
+python bbp_formulas.py
+```
+
+This script can be computationally intensive as it searches for formulas.
+
+### Geometric Algebra with YANS
+
+To try the geometric algebra implementation:
+
+```bash
+python bladed_yans.py
+```
+
 ## Key Features
 
 - **Efficient Operations**: Multiplication, division, and powers become simple vector operations

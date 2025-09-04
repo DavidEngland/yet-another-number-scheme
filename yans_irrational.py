@@ -357,6 +357,15 @@ class IrrationalityMeasure:
             # Use the formula μ ≈ -log(error)/log(q)
             if error > 0:
                 measure = -mpmath.log(error) / mpmath.log(q)
+                # Handle potential complex values
+                if hasattr(measure, 'real'):
+                    # If measure is complex, use the real part if it's reasonable
+                    if abs(measure.imag) < 0.001:  # Small imaginary component
+                        measure = measure.real
+                    else:
+                        continue  # Skip this measure if it has a significant imaginary part
+                
+                # Only add real-valued measures
                 errors.append(float(measure))
                 
         return sum(errors) / len(errors) if errors else float('nan')

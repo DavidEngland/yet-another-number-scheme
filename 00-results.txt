@@ -1,0 +1,127 @@
+YANS Stieltjes Constants Explorer
+========================================
+Computing Stieltjes constants up to γ_15...
+Computation completed in 12.52 seconds.
+Computing Stieltjes constants up to γ_10...
+Computation completed in 0.00 seconds.
+
+Continued fraction representations of the first few Stieltjes constants:
+γ_0 = [0; 1, 1, 2, 1, 2, 1, 4, 3, 13, 5, 1, 1, 8, 1, 2, 4, 1, 1, 40, 1, 11, 3, 7, 1...
+  First few convergents: [(0, 1), (1, 1), (1, 2)]
+  Estimated irrationality measure: 2.0833
+  Classification: Typical irrational (μ = 2)
+
+γ_1 = [0; -13, -1, -2, -1, -2, -1, -74, -1, -10, -1, -9, -2, -1, -3, -1, -4, -1, -6...
+  First few convergents: [(0, 1), (1, -13), (-1, 14)]
+  Estimated irrationality measure: 2.0803
+  Classification: Typical irrational (μ = 2)
+
+γ_2 = [0; -103, -5, -8, -3, -9, -1, -8, -10, -1, -10, -1, -1, -1, -2, -1, -7, -1, -...
+  First few convergents: [(0, 1), (1, -103), (-5, 516)]
+  Estimated irrationality measure: 2.0384
+  Classification: Typical irrational (μ = 2)
+
+γ_3 = [0; 486, 1, 8, 2, 4, 2, 1, 1, 3, 1, 2, 6, 1, 2, 3, 15, 1, 12, 2, 1, 10, 1, 4,...
+  First few convergents: [(0, 1), (1, 486), (1, 487)]
+  Estimated irrationality measure: 2.0494
+  Classification: Typical irrational (μ = 2)
+
+γ_4 = [0; 430, 25, 1, 1, 2, 3, 2, 3, 36, 1, 2, 7, 1, 4, 2, 8, 2, 2, 2, 2, 3, 5, 102...
+  First few convergents: [(0, 1), (1, 430), (25, 10751)]
+  Estimated irrationality measure: 2.0467
+  Classification: Typical irrational (μ = 2)
+
+Computing Stieltjes constants up to γ_15...
+Computation completed in 0.00 seconds.
+
+Using Stieltjes constants to approximate the Riemann zeta function:
+
+Approximating ζ(2) (π²/6 ≈ 1.6449...):
+  Actual value: (1.6449340668482264+0j)
+  With 1 terms: (1.5772156649015328+0j) (relative error: 4.116785e-02)
+  With 2 terms: (1.6500315103852097+0j) (relative error: 3.098874e-03)
+  With 3 terms: (1.6451863287887734+0j) (relative error: 1.533569e-04)
+  With 4 terms: (1.6448440230520562+0j) (relative error: 5.474006e-05)
+  With 5 terms: (1.6449409134714508+0j) (relative error: 4.162248e-06)
+  With 6 terms: (1.64493430243964+0j) (relative error: 1.432224e-07)
+  With 7 terms: (1.644933970815549+0j) (relative error: 5.838087e-08)
+  With 8 terms: (1.6449340754364947+0j) (relative error: 5.221041e-09)
+  With 9 terms: (1.6449340667032768+0j) (relative error: 8.811880e-11)
+  With 10 terms: (1.6449340667980594+0j) (relative error: 3.049787e-11)
+
+Approximating ζ(3) (ζ(3) ≈ 1.2021... (Apéry's constant)):
+  Actual value: (1.2020569031595942+0j)
+  With 1 terms: (1.0772156649015328+0j) (relative error: 1.038563e-01)
+  With 2 terms: (1.2228473558688864+0j) (relative error: 1.729573e-02)
+  With 3 terms: (1.2034666294831418+0j) (relative error: 1.172762e-03)
+  With 4 terms: (1.200728183589404+0j) (relative error: 1.105372e-03)
+  With 5 terms: (1.2022784302997154+0j) (relative error: 1.842901e-04)
+  With 6 terms: (1.2020668772817684+0j) (relative error: 8.297546e-06)
+  With 7 terms: (1.2020456533399524+0j) (relative error: 9.358808e-06)
+  With 8 terms: (1.2020590448210207+0j) (relative error: 1.781664e-06)
+  With 9 terms: (1.2020568091171868+0j) (relative error: 7.823457e-08)
+  With 10 terms: (1.2020568576459691+0j) (relative error: 3.786312e-08)
+
+Approximating ζ(4) (π⁴/90 ≈ 1.0823...):
+  Actual value: (1.0823232337111381+0j)
+  With 1 terms: (0.9105489982348661+0j) (relative error: 1.587088e-01)
+  With 2 terms: (1.1289965346858963+0j) (relative error: 4.312326e-02)
+  With 3 terms: (1.085389900317971+0j) (relative error: 2.833411e-03)
+  With 4 terms: (1.076147645426606+0j) (relative error: 5.705863e-03)
+  With 5 terms: (1.083995769397558+0j) (relative error: 1.545320e-03)
+  With 6 terms: (1.0823892886675233+0j) (relative error: 6.103071e-05)
+  With 7 terms: (1.0821475347052754+0j) (relative error: 1.623351e-04)
+  With 8 terms: (1.0823763407138378+0j) (relative error: 4.906760e-05)
+  With 9 terms: (1.0823190420698818+0j) (relative error: 3.872818e-06)
+  With 10 terms: (1.082320907679298+0j) (relative error: 2.149110e-06)
+
+Approximating ζ((0.5+14.135j)) (Near first non-trivial zero):
+  Actual value: (-3.4251569350346994e-05+0.00021530419858359514j)
+  With 1 terms: (0.5747162675687147-0.07065796259876837j) (relative error: 2.656298e+03)
+  With 2 terms: (0.5383083448268764+0.9585940133130021j) (relative error: 5.042062e+03)
+  With 3 terms: (1.5051557321983784+1.0270806551786271j) (relative error: 8.357812e+03)
+  With 4 terms: (1.4026104025103399+1.9901738175465777j) (relative error: 1.116736e+04)
+  With 5 terms: (5.2413793521835155+2.5367547954440117j) (relative error: 2.670924e+04)
+  With 6 terms: (5.899498381282149-1.1469371658120344j) (relative error: 2.756747e+04)
+  With 7 terms: (8.49488840984337-0.5879113060954093j) (relative error: 3.905873e+04)
+  With 8 terms: (11.397159655945222-12.07339825952417j) (relative error: 7.615767e+04)
+  With 9 terms: (-2.0336289011561735-15.97721225704916j) (relative error: 7.387828e+04)
+  With 10 terms: (-2.7053923083076317-13.937992246328946j) (relative error: 6.512648e+04)
+Computing Stieltjes constants up to γ_15...
+Computation completed in 0.00 seconds.
+
+Exploring patterns in Stieltjes constants:
+First few Stieltjes constants:
+γ_0 = 0.5772156649015328606065120900824024310421593359399235988057672348848677267776646709369470632917467495
+γ_1 = -0.0728158454836767248605863758749013191377363383343379525990065597414014335715114848780869282448440146
+γ_2 = -0.009690363192872318484530386035212529359065806101340749880701365451850755382280414171978197381374537319
+γ_3 = 0.002053834420303345866160046542753384285715804445410618245481483336913834492112970053570557166228566703
+γ_4 = 0.002325370065467300057468170177526068000904469413784850990758040907124841005315521900301678059039306361
+γ_5 = 0.0007933238173010627017533348774444448307315394045848870757342562698231482118017152023797200635876308163
+
+Sign alternation: No
+Growth rate: Approximately 0.7574 per term
+This suggests sub-factorial growth
+
+Interesting continued fraction patterns:
+γ_4 has a periodic continued fraction with period 1
+  Repeating pattern: [430]
+γ_5 has unusually large terms: [1260]
+γ_6 has a periodic continued fraction with period 1
+  Repeating pattern: [-4188]
+γ_9 has a periodic continued fraction with period 1
+  Repeating pattern: [-29074]
+
+Irrationality measures:
+γ_0: μ ≈ 2.0833 (Typical irrational (μ = 2))
+γ_1: μ ≈ 2.0803 (Typical irrational (μ = 2))
+γ_2: μ ≈ 2.0384 (Typical irrational (μ = 2))
+γ_3: μ ≈ 2.0494 (Typical irrational (μ = 2))
+γ_4: μ ≈ 2.0467 (Typical irrational (μ = 2))
+γ_5: μ ≈ 2.0443 (Typical irrational (μ = 2))
+γ_6: μ ≈ 2.0314 (Typical irrational (μ = 2))
+γ_7: μ ≈ 2.0484 (Typical irrational (μ = 2))
+γ_8: μ ≈ 2.0363 (Typical irrational (μ = 2))
+γ_9: μ ≈ 2.0430 (Typical irrational (μ = 2))
+
+Exploration complete!
