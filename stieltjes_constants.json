@@ -1,0 +1,139 @@
+{
+  "elements": [
+    {
+      "type": "TRANSCENDENTAL",
+      "string_value": "577215664901533/1000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": 577215664901533,
+        "denominator": 1000000000000000
+      }
+    },
+    {
+      "type": "RATIONAL",
+      "string_value": "-728158454836767/10000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": -728158454836767,
+        "denominator": 10000000000000000
+      }
+    },
+    {
+      "type": "TRANSCENDENTAL",
+      "string_value": "-15141192488863/1562500000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": -15141192488863,
+        "denominator": 1562500000000000
+      }
+    },
+    {
+      "type": "RATIONAL",
+      "string_value": "41076688406067/20000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": 41076688406067,
+        "denominator": 20000000000000000
+      }
+    },
+    {
+      "type": "TRANSCENDENTAL",
+      "string_value": "23253700654673/10000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": 23253700654673,
+        "denominator": 10000000000000000
+      }
+    },
+    {
+      "type": "RATIONAL",
+      "string_value": "793323817301063/1000000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": 793323817301063,
+        "denominator": 1000000000000000000
+      }
+    },
+    {
+      "type": "TRANSCENDENTAL",
+      "string_value": "-1193846727151/5000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": -1193846727151,
+        "denominator": 5000000000000000
+      }
+    },
+    {
+      "type": "RATIONAL",
+      "string_value": "-527289567057751/1000000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": -527289567057751,
+        "denominator": 1000000000000000000
+      }
+    },
+    {
+      "type": "TRANSCENDENTAL",
+      "string_value": "-352123353803039/1000000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": -352123353803039,
+        "denominator": 1000000000000000000
+      }
+    },
+    {
+      "type": "RATIONAL",
+      "string_value": "-4299346802261/125000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": -4299346802261,
+        "denominator": 125000000000000000
+      }
+    },
+    {
+      "type": "TRANSCENDENTAL",
+      "string_value": "41066562981813/200000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": 41066562981813,
+        "denominator": 200000000000000000
+      }
+    },
+    {
+      "type": "RATIONAL",
+      "string_value": "8443263735747/31250000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": 8443263735747,
+        "denominator": 31250000000000000
+      }
+    },
+    {
+      "type": "TRANSCENDENTAL",
+      "string_value": "8363645605257/50000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": 8363645605257,
+        "denominator": 50000000000000000
+      }
+    },
+    {
+      "type": "RATIONAL",
+      "string_value": "-137319033018801/5000000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": -137319033018801,
+        "denominator": 5000000000000000000
+      }
+    },
+    {
+      "type": "TRANSCENDENTAL",
+      "string_value": "-2092092620593/10000000000000000",
+      "representation": {
+        "method": "fraction",
+        "numerator": -2092092620593,
+        "denominator": 10000000000000000
+      }
+    }
+  ]
+}

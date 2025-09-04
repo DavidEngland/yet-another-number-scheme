@@ -1,0 +1,4 @@
+sympy>=1.11.1
+mpmath>=1.3.0
+numpy>=1.24.0
+matplotlib>=3.7.0  # Optional: for plotting
